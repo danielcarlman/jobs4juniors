@@ -28,6 +28,7 @@ function App() {
             maxW='700px'
             rounded='lg'
             textAlign='center'
+            fontSize={['sm', 'md', 'lg', 'xl']}
           />
           <h1>Job Listing</h1>
         </Flex>
