@@ -26,7 +26,7 @@ function App() {
         >
           <Stack spacing={4}>
             <Box>Logo</Box>
-            <Stack isInline spacing={22} align='center' direction='row'>
+            <Stack isInline spacing={8} align='center' direction='row'>
               <Input
                 placeholder='Search for a job'
                 p={[2, 4, 6, 8]}
