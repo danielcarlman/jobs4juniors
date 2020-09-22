@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   ColorModeProvider,
   CSSReset,
   Input,
@@ -14,22 +15,27 @@ function App() {
       <ColorModeProvider>
         <Flex
           h='100vh'
-          bg='gray.200'
+          bg='gray.500'
           direction='column'
           align='center'
           justify='center'
         >
           <h1>Logo</h1>
-          <Input
-            placeholder='Search for a job'
-            m={[2, 4, 6, 8]}
-            p={[2, 4, 5, 6]}
-            w='90vw'
-            maxW='700px'
-            rounded='lg'
-            textAlign='center'
-            fontSize={['sm', 'md', 'lg', 'xl']}
-          />
+          <Flex direction='row'>
+            <Input
+              placeholder='Search for a job'
+              m={[1, 2, 3, 4]}
+              p={[2, 4, 6, 8]}
+              w='50vw'
+              maxW='700px'
+              rounded='lg'
+              textAlign='center'
+              fontSize={['sm', 'md', 'lg', 'xl']}
+            />
+            <Button m={[1, 2, 3, 4]} p={[2, 4, 6, 8]} rounded='lg'>
+              Search
+            </Button>
+          </Flex>
           <h1>Job Listing</h1>
         </Flex>
       </ColorModeProvider>
