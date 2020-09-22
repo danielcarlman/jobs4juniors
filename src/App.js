@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ColorModeProvider,
   CSSReset,
+  Input,
   Flex,
   ThemeProvider,
 } from '@chakra-ui/core';
@@ -19,7 +20,15 @@ function App() {
           justify='center'
         >
           <h1>Logo</h1>
-          <h1>Search Bar</h1>
+          <Input
+            placeholder='Search for a job'
+            m={[2, 4, 6, 8]}
+            p={[2, 4, 5, 6]}
+            w='90vw'
+            maxW='700px'
+            rounded='lg'
+            textAlign='center'
+          />
           <h1>Job Listing</h1>
         </Flex>
       </ColorModeProvider>
