@@ -26,23 +26,21 @@ function App() {
         >
           <Stack spacing={4}>
             <Box>Logo</Box>
-            <Flex direction='row'>
-              <Stack isInline spacing={22} align='center'>
-                <Input
-                  placeholder='Search for a job'
-                  p={[2, 4, 6, 8]}
-                  w='50vw'
-                  maxW='700px'
-                  rounded='lg'
-                  textAlign='center'
-                  fontSize={['sm', 'md', 'lg', 'xl']}
-                />
+            <Stack isInline spacing={22} align='center' direction='row'>
+              <Input
+                placeholder='Search for a job'
+                p={[2, 4, 6, 8]}
+                w='50vw'
+                maxW='700px'
+                rounded='lg'
+                textAlign='center'
+                fontSize={['sm', 'md', 'lg', 'xl']}
+              />
+              <Button p={[2, 4, 6, 8]} rounded='lg'>
+                Search
+              </Button>
+            </Stack>
 
-                <Button p={[2, 4, 6, 8]} rounded='lg'>
-                  Search
-                </Button>
-              </Stack>
-            </Flex>
             <Box>Job Listing</Box>
           </Stack>
         </Flex>
