@@ -31,7 +31,7 @@ function App() {
             <Box
               w='90vw'
               maxW='950px'
-              fontSize={['sm', 'md', 'lg', 'xl']}
+              fontSize={['xs', 'sm', 'md', 'lg']}
               textAlign='left'
             >
               <List>

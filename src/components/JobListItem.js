@@ -13,19 +13,15 @@ function JobList() {
       <Stack isInline spacing={8} justify='space-between' align='center'>
         <Box isTruncated>
           <Stack>
-            <Text fontSize='16px' isTruncated>
-              Power Home Remodeling
-            </Text>
+            <Text isTruncated>Power Home Remodeling</Text>
             <Text as='strong' fontSize='19.2px' isTruncated>
               User Experience Engineer
             </Text>
-            <Text fontSize='16px' isTruncated>
-              Full-Time/Anywhere (100% Remote) Only
-            </Text>
+            <Text isTruncated>Full-Time/Anywhere (100% Remote) Only</Text>
           </Stack>
         </Box>
         <Box>
-          <Text as='strong' fontSize='16px' isTruncated>
+          <Text as='strong' isTruncated>
             Sep 14
           </Text>
         </Box>
