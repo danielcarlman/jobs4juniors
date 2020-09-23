@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Stack,
+  Text,
   ThemeProvider,
 } from '@chakra-ui/core';
 
@@ -27,12 +28,46 @@ function App() {
           <Stack spacing={4}>
             <Box>Logo</Box>
             <Box>Search Bar</Box>
-            <List>
-              <Stack spacing={4} width={'80vw'}>
-                <ListItem bg='yellow.200'>Job 1</ListItem>
-                <ListItem bg='yellow.200'>Job 2</ListItem>
-              </Stack>
-            </List>
+            <Box
+              w='50vw'
+              maxW='950px'
+              fontSize={['sm', 'md', 'lg', 'xl']}
+              textAlign='left'
+            >
+              <List>
+                <Stack spacing={4}>
+                  <ListItem
+                    p={[1, 2, 3, 4]}
+                    bg='yellow.100'
+                    borderRight='4px solid #ffd500'
+                  >
+                    <Stack
+                      isInline
+                      spacing={8}
+                      justify='space-between'
+                      align='center'
+                    >
+                      <Box>
+                        <Stack>
+                          <Text fontSize='16px'>Power Home Remodeling</Text>
+                          <Text as='strong' fontSize='19.2px'>
+                            User Experience Engineer
+                          </Text>
+                          <Text fontSize='16px'>
+                            Full-Time/Anywhere (100% Remote) Only
+                          </Text>
+                        </Stack>
+                      </Box>
+                      <Box pr='150px'>
+                        <Text as='strong' fontSize='16px'>
+                          Sep 14
+                        </Text>
+                      </Box>
+                    </Stack>
+                  </ListItem>
+                </Stack>
+              </List>
+            </Box>
           </Stack>
         </Flex>
       </ColorModeProvider>
