@@ -40,7 +40,6 @@ function App() {
                 Search
               </Button>
             </Stack>
-
             <Box>Job Listing</Box>
           </Stack>
         </Flex>
