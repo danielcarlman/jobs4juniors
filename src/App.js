@@ -28,17 +28,16 @@ function App() {
           <Stack spacing={4}>
             <Text>Logo</Text>
             <Text>Search Bar</Text>
-            <Box
+
+            <List
               w='90vw'
               maxW='950px'
               fontSize={['xs', 'sm', 'md', 'lg']}
               textAlign='left'
               isTruncated
             >
-              <List>
-                <JobListItem />
-              </List>
-            </Box>
+              <JobListItem />
+            </List>
           </Stack>
         </Flex>
       </ColorModeProvider>
