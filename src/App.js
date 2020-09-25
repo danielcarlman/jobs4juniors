@@ -23,7 +23,13 @@ function App() {
           textAlign='center'
         >
           <Stack spacing={4}>
-            <Box>Logo</Box>
+            <Box
+              color='black'
+              fontFamily="'Alfa Slab One', cursive"
+              fontSize={['30px', '35px', '50px', '60px']}
+            >
+              Jobs 4 Juniors
+            </Box>
             <Box>Search Bar</Box>
             <Box>Job Listing</Box>
           </Stack>
