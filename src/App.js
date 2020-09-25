@@ -37,7 +37,6 @@ function App() {
               <List>
                 <Stack spacing={4} shouldWrapChildren>
                   <JobListItem />
-                  <JobListItem />
                 </Stack>
               </List>
             </Box>
