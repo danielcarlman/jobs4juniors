@@ -15,7 +15,7 @@ function App() {
       <ColorModeProvider>
         <Flex
           h='100vh'
-          bg='gray.300'
+          bg='gray.100'
           direction='column'
           align='center'
           justify='flex-start'
