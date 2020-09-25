@@ -33,11 +33,10 @@ function App() {
               maxW='950px'
               fontSize={['xs', 'sm', 'md', 'lg']}
               textAlign='left'
+              isTruncated
             >
               <List>
-                <Stack spacing={4} shouldWrapChildren>
-                  <JobListItem />
-                </Stack>
+                <JobListItem />
               </List>
             </Box>
           </Stack>

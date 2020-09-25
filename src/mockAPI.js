@@ -54,7 +54,7 @@ const mockAPI = [
     title: 'Software Engineer',
     contract: 'Full-Time/USA Only',
     isEntryLevel: true,
-    date: 'Sep 21',
+    date: 'Sep 24',
     URL: 'https://weworkremotely.com/remote-jobs/podsights-software-engineer-2',
   },
 ];
