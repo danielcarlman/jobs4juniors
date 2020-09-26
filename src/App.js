@@ -30,18 +30,24 @@ function App() {
           <Stack spacing={4}>
             <Box>Logo</Box>
             <Stack isInline spacing={8} align='center' direction='row'>
-              <Input
-                placeholder='Search for a job'
-                p={[2, 4, 6, 8]}
-                w='50vw'
-                maxW='700px'
-                rounded='lg'
-                textAlign='center'
-                fontSize={['sm', 'md', 'lg', 'xl']}
-              />
-              <Button p={[2, 4, 6, 8]} rounded='lg'>
-                Search
-              </Button>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                }}
+              >
+                <Input
+                  placeholder='Search for a job'
+                  p={[2, 4, 6, 8]}
+                  w='50vw'
+                  maxW='700px'
+                  rounded='lg'
+                  textAlign='center'
+                  fontSize={['sm', 'md', 'lg', 'xl']}
+                />
+                <Button p={[2, 4, 6, 8]} rounded='lg' type='submit'>
+                  Search
+                </Button>
+              </form>
             </Stack>
 
             <List
