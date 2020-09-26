@@ -27,19 +27,30 @@ function App() {
           p={[2, 4, 6, 8]}
           textAlign='center'
         >
-          <Stack spacing={4}>
+          <Stack spacing={4} shouldWrapChildren>
             <Box>Logo</Box>
-            <Stack isInline spacing={8} align='center' direction='row'>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                }}
+
+            <form
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                width: '100%',
+              }}
+              onSubmit={(event) => {
+                event.preventDefault();
+              }}
+            >
+              <Stack
+                isInline
+                justify={'space-between'}
+                align='center'
+                direction='row'
+                maxW='1000px'
               >
                 <Input
+                  display='block'
                   placeholder='Search for a job'
                   p={[2, 4, 6, 8]}
-                  w='50vw'
-                  maxW='700px'
                   rounded='lg'
                   textAlign='center'
                   fontSize={['sm', 'md', 'lg', 'xl']}
@@ -47,8 +58,8 @@ function App() {
                 <Button p={[2, 4, 6, 8]} rounded='lg' type='submit'>
                   Search
                 </Button>
-              </form>
-            </Stack>
+              </Stack>
+            </form>
 
             <List
               w='90vw'
