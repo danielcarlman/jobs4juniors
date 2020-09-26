@@ -4,9 +4,12 @@ import {
   ColorModeProvider,
   CSSReset,
   Flex,
+  List,
   Stack,
+  Text,
   ThemeProvider,
 } from '@chakra-ui/core';
+import JobListItem from './components/JobListItem';
 
 function App() {
   return (
@@ -23,9 +26,18 @@ function App() {
           textAlign='center'
         >
           <Stack spacing={4}>
-            <Box>Logo</Box>
-            <Box>Search Bar</Box>
-            <Box>Job Listing</Box>
+            <Text>Logo</Text>
+            <Text>Search Bar</Text>
+
+            <List
+              w='90vw'
+              maxW='950px'
+              fontSize={['xs', 'sm', 'md', 'lg']}
+              textAlign='left'
+              isTruncated
+            >
+              <JobListItem />
+            </List>
           </Stack>
         </Flex>
       </ColorModeProvider>
