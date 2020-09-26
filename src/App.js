@@ -6,9 +6,12 @@ import {
   CSSReset,
   Flex,
   Input,
+  List,
   Stack,
+  Text,
   ThemeProvider,
 } from '@chakra-ui/core';
+import JobListItem from './components/JobListItem';
 
 function App() {
   return (
@@ -40,7 +43,16 @@ function App() {
                 Search
               </Button>
             </Stack>
-            <Box>Job Listing</Box>
+
+            <List
+              w='90vw'
+              maxW='950px'
+              fontSize={['xs', 'sm', 'md', 'lg']}
+              textAlign='left'
+              isTruncated
+            >
+              <JobListItem />
+            </List>
           </Stack>
         </Flex>
       </ColorModeProvider>
