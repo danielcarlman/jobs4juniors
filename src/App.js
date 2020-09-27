@@ -20,16 +20,27 @@ function App() {
       <ColorModeProvider>
         <Flex
           h='100vh'
-          bg='gray.300'
+          bg='gray.100'
           direction='column'
           align='center'
-          justify='center'
-          p={[2, 4, 6, 8]}
+          justify='flex-start'
+          px={[4, 5, 6, 7, 8]}
+          py={['50px', '60px', '70px', '80px', '100px']}
           textAlign='center'
         >
-          <Stack spacing={4} shouldWrapChildren>
-            <Box>Logo</Box>
 
+          
+            
+
+          <Stack spacing={4} shouldWrapChildren>
+            
+<Box
+              color='black'
+              fontFamily="'Alfa Slab One', cursive"
+              fontSize={['30px', '35px', '50px', '60px']}
+            >
+              Jobs 4 Juniors
+            </Box>            
             <form
               style={{
                 display: 'flex',
@@ -70,6 +81,7 @@ function App() {
             >
               <JobListItem />
             </List>
+
           </Stack>
         </Flex>
       </ColorModeProvider>
