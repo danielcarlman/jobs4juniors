@@ -1,9 +1,11 @@
 import React from 'react';
 import {
   Box,
+  Button,
   ColorModeProvider,
   CSSReset,
   Flex,
+  Input,
   List,
   Stack,
   Text,
@@ -25,9 +27,39 @@ function App() {
           p={[2, 4, 6, 8]}
           textAlign='center'
         >
-          <Stack spacing={4}>
-            <Text>Logo</Text>
-            <Text>Search Bar</Text>
+          <Stack spacing={4} shouldWrapChildren>
+            <Box>Logo</Box>
+
+            <form
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                width: '100%',
+              }}
+              onSubmit={(event) => {
+                event.preventDefault();
+              }}
+            >
+              <Stack
+                isInline
+                justify={'space-between'}
+                align='center'
+                direction='row'
+                maxW='1000px'
+              >
+                <Input
+                  display='block'
+                  placeholder='Search for a job'
+                  p={[2, 4, 6, 8]}
+                  rounded='lg'
+                  textAlign='center'
+                  fontSize={['sm', 'md', 'lg', 'xl']}
+                />
+                <Button p={[2, 4, 6, 8]} rounded='lg' type='submit'>
+                  Search
+                </Button>
+              </Stack>
+            </form>
 
             <List
               w='90vw'
