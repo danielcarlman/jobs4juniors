@@ -28,7 +28,9 @@ function App() {
           textAlign='center'
         >
           <Stack spacing={4} shouldWrapChildren>
-            <Box>Logo</Box>
+            <Box color='black' fontSize={['30px', '35px', '50px', '60px']}>
+              Jobs 4 Juniors
+            </Box>
 
             <form
               style={{
@@ -45,7 +47,7 @@ function App() {
                 justify={'space-between'}
                 align='center'
                 direction='row'
-                maxW='1000px'
+                w='100%'
               >
                 <Input
                   display='block'
