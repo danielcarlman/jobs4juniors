@@ -23,15 +23,19 @@ function App() {
           bg='gray.300'
           direction='column'
           align='center'
-          justify='center'
-          p={[2, 4, 6, 8]}
+          justify='flex-start'
+          px={[4, 5, 6, 7, 8]}
+          py={['50px', '60px', '70px', '80px', '100px']}
           textAlign='center'
         >
           <Stack spacing={4} shouldWrapChildren>
-            <Box color='black' fontSize={['30px', '35px', '50px', '60px']}>
+            <Box
+              color='black'
+              fontFamily="'Alfa Slab One', cursive"
+              fontSize={['30px', '35px', '50px', '60px']}
+            >
               Jobs 4 Juniors
             </Box>
-
             <form
               style={{
                 display: 'flex',
