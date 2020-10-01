@@ -4,7 +4,7 @@ const mockAPI = [
     employer: 'Shrine Development',
     title: 'Senior Software Engineer',
     contract: 'Contract/North America Only',
-    isEntryLevel: false,
+    skillLevel: 3,
     date: 'Sep 24',
     URL:
       'https://weworkremotely.com/remote-jobs/shrine-development-senior-software-engineer',
@@ -14,7 +14,7 @@ const mockAPI = [
     employer: 'Elevar',
     title: 'React Engineer',
     contract: 'Full-Time Anywhere (100% Remote) Only',
-    isEntryLevel: true,
+    skillLevel: 1,
     date: 'Sep 22',
     URL: 'https://weworkremotely.com/remote-jobs/elevar-react-engineer',
   },
@@ -23,7 +23,7 @@ const mockAPI = [
     employer: 'Twitch',
     title: 'Senior Backend Engineer',
     contract: 'Full-Time / Europe Only',
-    isEntryLevel: false,
+    skillLevel: 3,
     date: 'Sep 23',
     URL:
       'https://weworkremotely.com/remote-jobs/twitch-senior-backend-engineer',
@@ -33,7 +33,7 @@ const mockAPI = [
     employer: 'Shogun',
     title: 'Typescript + React Software Engineer',
     contract: 'Full-Time / North America Only',
-    isEntryLevel: true,
+    skillLevel: 2,
     date: 'Sep 24',
     URL:
       'https://weworkremotely.com/remote-jobs/shogun-typescript-react-software-engineer',
@@ -43,7 +43,7 @@ const mockAPI = [
     employer: 'Bryter',
     title: 'Frontend Engineer, Design Systems',
     contract: 'Full-Time Anywhere (100% Remote) Only',
-    isEntryLevel: true,
+    skillLevel: 1,
     date: 'Sep 18',
     URL:
       'https://weworkremotely.com/remote-jobs/bryter-frontend-engineer-design-systems',
@@ -53,7 +53,7 @@ const mockAPI = [
     employer: 'Podsights',
     title: 'Software Engineer',
     contract: 'Full-Time/USA Only',
-    isEntryLevel: true,
+    skillLevel: 1,
     date: 'Sep 24',
     URL: 'https://weworkremotely.com/remote-jobs/podsights-software-engineer-2',
   },
