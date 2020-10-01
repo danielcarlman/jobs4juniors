@@ -44,7 +44,7 @@ function JobList() {
           </Text>
 
           <Text as='strong' isTruncated>
-            {new Date(date).toISOString()}
+            {new Intl.DateTimeFormat('en-US').format(new Date(date))}
           </Text>
         </Box>
       </Stack>
