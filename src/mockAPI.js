@@ -15,7 +15,7 @@ const mockAPI = [
     title: 'React Engineer',
     contract: 'Full-Time Anywhere (100% Remote) Only',
     skillLevel: 1,
-    date: new Date('Sep 22').toISOString(),
+    date: new Date('Sep 24').toISOString(),
     URL: 'https://weworkremotely.com/remote-jobs/elevar-react-engineer',
   },
   {
@@ -24,7 +24,7 @@ const mockAPI = [
     title: 'Senior Backend Engineer',
     contract: 'Full-Time / Europe Only',
     skillLevel: 3,
-    date: new Date('Sep 23').toISOString(),
+    date: new Date('Sep 24').toISOString(),
     URL:
       'https://weworkremotely.com/remote-jobs/twitch-senior-backend-engineer',
   },
@@ -44,7 +44,7 @@ const mockAPI = [
     title: 'Frontend Engineer, Design Systems',
     contract: 'Full-Time Anywhere (100% Remote) Only',
     skillLevel: 1,
-    date: new Date('Sep 18').toISOString(),
+    date: new Date('Sep 23').toISOString(),
     URL:
       'https://weworkremotely.com/remote-jobs/bryter-frontend-engineer-design-systems',
   },
@@ -54,7 +54,7 @@ const mockAPI = [
     title: 'Software Engineer',
     contract: 'Full-Time/USA Only',
     skillLevel: 1,
-    date: new Date('Sep 24').toISOString(),
+    date: new Date('Sep 23').toISOString(),
     URL: 'https://weworkremotely.com/remote-jobs/podsights-software-engineer-2',
   },
 ];
