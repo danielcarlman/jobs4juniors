@@ -3,20 +3,20 @@ import { Badge, Box, ListItem, Stack, Text } from '@chakra-ui/core';
 import mockAPI from '../mockAPI';
 
 function JobList() {
-  const textSize = ['9px', '12px', '15px', '18px', '19.2px'];
-  return mockAPI.map((job) => (
+  const textSize = ['9px', '12px', '15px', '18px', '19px'];
+  return mockAPI.map(({ date, title, contract, employer, URL, skillLevel }) => (
     <ListItem
       as='a'
-      href={job.URL}
+      href={URL}
       target='_blank'
       py={[1, 2, 3, 4]}
       pl='1rem'
       pr={['1rem', '5rem', '10rem']}
-      bg={job.date === 'Sep 24' ? 'yellow.100' : 'white'}
+      bg={date === 'Sep 24' ? 'yellow.100' : 'white'}
       borderRight={
-        job.date === 'Sep 24' ? '0.4rem solid #ffd500' : '0.4rem solid white'
+        date === 'Sep 24' ? '0.4rem solid #ffd500' : '0.4rem solid white'
       }
-      display={job.isEntryLevel ? 'block' : 'none'}
+      display={skillLevel < 3 ? 'block' : 'none'}
       spacing='8px'
       shouldWrapChildren
     >
@@ -24,19 +24,19 @@ function JobList() {
         <Box isTruncated>
           <Stack isTruncated>
             <Text fontSize={textSize} isTruncated>
-              {job.employer}
+              {employer}
             </Text>
             <Text as='strong' fontSize={textSize} isTruncated>
-              {job.title}
+              {title}
             </Text>
             <Text fontSize={textSize} isTruncated>
-              {job.contract}
+              {contract}
             </Text>
           </Stack>
         </Box>
         <Box>
           <Text fontSize={textSize} textAlign='center' isTruncated>
-            {job.date === 'Sep 24' && (
+            {date === 'Sep 24' && (
               <Badge variantColor='red' mb='5px'>
                 New
               </Badge>
@@ -44,7 +44,7 @@ function JobList() {
           </Text>
 
           <Text as='strong' isTruncated>
-            {job.date}
+            {new Intl.DateTimeFormat('en-US').format(new Date(date))}
           </Text>
         </Box>
       </Stack>
