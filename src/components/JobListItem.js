@@ -1,6 +1,11 @@
 import React from 'react';
 import { Badge, Box, ListItem, Stack, Text } from '@chakra-ui/core';
 import mockAPI from '../mockAPI';
+import moment from 'moment';
+
+function formatDate(arg) {
+  return moment(arg).format('MMM DD');
+}
 
 function JobList() {
   const textSize = ['9px', '12px', '15px', '18px', '19px'];
@@ -12,9 +17,11 @@ function JobList() {
       py={[1, 2, 3, 4]}
       pl='1rem'
       pr={['1rem', '5rem', '10rem']}
-      bg={date === 'Sep 24' ? 'yellow.100' : 'white'}
+      bg={formatDate(date) === 'Sep 24' ? 'yellow.100' : 'white'}
       borderRight={
-        date === 'Sep 24' ? '0.4rem solid #ffd500' : '0.4rem solid white'
+        formatDate(date) === 'Sep 24'
+          ? '0.4rem solid #ffd500'
+          : '0.4rem solid white'
       }
       display={skillLevel < 3 ? 'block' : 'none'}
       spacing='8px'
@@ -36,7 +43,7 @@ function JobList() {
         </Box>
         <Box>
           <Text fontSize={textSize} textAlign='center' isTruncated>
-            {date === 'Sep 24' && (
+            {formatDate(date) === 'Sep 24' && (
               <Badge variantColor='red' mb='5px'>
                 New
               </Badge>
@@ -44,7 +51,7 @@ function JobList() {
           </Text>
 
           <Text as='strong' isTruncated>
-            {new Intl.DateTimeFormat('en-US').format(new Date(date))}
+            {formatDate(date)}
           </Text>
         </Box>
       </Stack>
