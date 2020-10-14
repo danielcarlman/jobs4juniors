@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -14,6 +14,7 @@ import {
 import JobListItem from './components/JobListItem';
 
 function App() {
+  const [search, setSearch] = useState('');
   return (
     <ThemeProvider>
       <CSSReset />
@@ -54,12 +55,14 @@ function App() {
                 w='100%'
               >
                 <Input
-                  display='block'
                   placeholder='Search for a job'
                   p={[2, 4, 6, 8]}
                   rounded='lg'
                   textAlign='center'
                   fontSize={['sm', 'md', 'lg', 'xl']}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
                 />
                 <Button p={[2, 4, 6, 8]} rounded='lg' type='submit'>
                   Search
