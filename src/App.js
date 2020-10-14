@@ -64,7 +64,12 @@ function App() {
                     setSearch(e.target.value);
                   }}
                 />
-                <Button p={[2, 4, 6, 8]} rounded='lg' type='submit'>
+                <Button
+                  p={[2, 4, 6, 8]}
+                  rounded='lg'
+                  type='submit'
+                  onSubmit={search}
+                >
                   Search
                 </Button>
               </Stack>
@@ -77,6 +82,8 @@ function App() {
               textAlign='left'
               isTruncated
             >
+              {/* ONCHANGE */}
+              {search && <Text textAlign='center'>{search}</Text>}
               <JobListItem />
             </List>
           </Stack>
