@@ -68,7 +68,7 @@ function App() {
                   p={[2, 4, 6, 8]}
                   rounded='lg'
                   type='submit'
-                  onSubmit={search}
+                  onClick={search}
                 >
                   Search
                 </Button>
