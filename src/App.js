@@ -101,13 +101,15 @@ function App() {
               isTruncated
             >
               {isLoading && (
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="blue.500"
-                  size="xl"
-                />
+                <Flex justify="center" mt={[2, 4, 6, 8]}>
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
+                  />
+                </Flex>
               )}
               {!isLoading && <JobListItem joblist={joblist} />}
             </List>
