@@ -12,9 +12,11 @@ import {
   ThemeProvider,
 } from '@chakra-ui/core';
 import JobListItem from './components/JobListItem';
+import mockAPI from './mockAPI'
 
 function App() {
   const [search, setSearch] = useState('');
+  const [joblist, setJoblist] = useState(mockAPI);
   return (
     <ThemeProvider>
       <CSSReset />
@@ -45,6 +47,7 @@ function App() {
               }}
               onSubmit={(event) => {
                 event.preventDefault();
+                setJoblist(search ? mockAPI.filter((job) => job.title.trim().toLowerCase().includes(search.trim().toLowerCase())) : mockAPI)
               }}
             >
               <Stack
@@ -67,8 +70,7 @@ function App() {
                 <Button
                   p={[2, 4, 6, 8]}
                   rounded='lg'
-                  type='submit'
-                  onClick={search}
+                  type='submit'                  
                 >
                   Search
                 </Button>
@@ -81,10 +83,8 @@ function App() {
               fontSize={['xs', 'sm', 'md', 'lg']}
               textAlign='left'
               isTruncated
-            >
-              {/* ONCHANGE */}
-              {search && <Text textAlign='center'>{search}</Text>}
-              <JobListItem />
+            >              
+              <JobListItem joblist={joblist}/>              
             </List>
           </Stack>
         </Flex>

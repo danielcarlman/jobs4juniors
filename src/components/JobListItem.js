@@ -7,9 +7,12 @@ function formatDate(arg) {
   return moment(arg).format('MMM DD');
 }
 
-function JobList() {
-  const textSize = ['9px', '12px', '15px', '18px', '19px'];
-  return mockAPI.map(({ date, title, contract, employer, URL, skillLevel }) => (
+function JobList({joblist}) {
+  const textSize = ['9px', '12px', '15px', '18px', '19px'];    
+    if (joblist.length === 0) {
+    return <Text>No matches found</Text>
+  }
+  return joblist.map(({ date, title, contract, employer, URL, skillLevel }) => (    
     <ListItem
       as='a'
       href={URL}
@@ -55,7 +58,7 @@ function JobList() {
           </Text>
         </Box>
       </Stack>
-    </ListItem>
+    </ListItem>    
   ));
 }
 
