@@ -60,7 +60,7 @@ function App() {
                 event.preventDefault();
                 setJoblist(
                   search
-                    ? joblist.filter((job) =>
+                    ? originalList.current.filter((job) =>
                         job.title
                           .trim()
                           .toLowerCase()
