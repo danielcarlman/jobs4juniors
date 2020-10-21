@@ -53,7 +53,7 @@ const mockAPI = {
       id: 6,
       employer: "Podsights",
       title: "Software Engineer",
-      contract: "Full-Time/USA Only",
+      contract: "Full-Time / USA Only",
       skillLevel: 1,
       date: new Date("Sep 23").toISOString(),
       URL:
