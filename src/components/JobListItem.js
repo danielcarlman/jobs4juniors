@@ -1,15 +1,33 @@
-import React, { useState } from "react";
-import { Badge, Box, Icon, ListItem, Stack, Text } from "@chakra-ui/core";
+import React, { useEffect, useState } from "react";
+import {
+  Badge,
+  Box,
+  Button,
+  Icon,
+  ListItem,
+  Stack,
+  Text,
+} from "@chakra-ui/core";
 import moment from "moment";
 
-function formatDate(arg) {
-  return moment(arg).format("MMM DD");
+function formatDate(date) {
+  return moment(date).format("MMM DD");
+}
+
+function addFavorite(id, favorites) {
+  return [...favorites, id];
+}
+
+function removeFavorite(id, favorites) {
+  return favorites.filter((element) => element !== id);
 }
 
 function JobList({ joblist }) {
-  const [toggleFavorite, setToggleFavorite] = useState(false);
-  const [favorite, setFavorite] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const textSize = ["9px", "12px", "15px", "18px", "19px"];
+  useEffect(() => {
+    console.log(favorites);
+  }, [favorites]);
   if (joblist.length === 0) {
     return <Text>No matches found</Text>;
   }
@@ -35,6 +53,7 @@ function JobList({ joblist }) {
           align="center"
           shouldWrapChildren
         >
+          <Text>{favorites}</Text>
           <Box minW="400px" isTruncated>
             <Stack as="a" href={URL} target="_blank">
               <Text fontSize={textSize} isTruncated>
@@ -62,20 +81,22 @@ function JobList({ joblist }) {
             </Text>
           </Box>
           <Box>
-            <Icon
+            <Button
               onClick={() => {
-                setToggleFavorite(!toggleFavorite);
-                setFavorite(
-                  toggleFavorite
-                    ? [...favorite, id]
-                    : favorite.filter(() => favorite.id)
+                setFavorites(
+                  favorites.includes(id)
+                    ? removeFavorite(id, favorites)
+                    : addFavorite(id, favorites)
                 );
-                console.log(favorite);
               }}
-              name="star"
-              color={toggleFavorite ? "orange.300" : "gray.500"}
-              size="1.4rem"
-            />
+            >
+              <Icon
+                name="star"
+                color={favorites.includes(id) ? "orange.300" : "gray.500"}
+                size="1.4rem"
+              />
+            </Button>
+            <Text>{id}</Text>
           </Box>
         </Stack>
       </ListItem>
