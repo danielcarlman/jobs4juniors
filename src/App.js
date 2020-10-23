@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   ColorModeProvider,
-  CSSReset,
   Flex,
   Input,
   List,
@@ -14,6 +13,7 @@ import {
 } from "@chakra-ui/core";
 import JobListItem from "./components/JobListItem";
 import api from "./api";
+import "./global.css";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -30,10 +30,9 @@ function App() {
   }, []);
   return (
     <ThemeProvider>
-      <CSSReset />
       <ColorModeProvider>
         <Flex
-          h="100vh"
+          height="100%"
           bg="gray.300"
           direction="column"
           align="center"

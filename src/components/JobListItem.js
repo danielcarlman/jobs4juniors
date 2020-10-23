@@ -53,7 +53,6 @@ function JobList({ joblist }) {
           align="center"
           shouldWrapChildren
         >
-          <Text>{favorites}</Text>
           <Box minW="400px" isTruncated>
             <Stack as="a" href={URL} target="_blank">
               <Text fontSize={textSize} isTruncated>
@@ -82,6 +81,7 @@ function JobList({ joblist }) {
           </Box>
           <Box>
             <Button
+              backgroundColor="clear"
               onClick={() => {
                 setFavorites(
                   favorites.includes(id)
@@ -96,7 +96,6 @@ function JobList({ joblist }) {
                 size="1.4rem"
               />
             </Button>
-            <Text>{id}</Text>
           </Box>
         </Stack>
       </ListItem>
