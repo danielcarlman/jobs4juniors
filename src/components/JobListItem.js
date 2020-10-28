@@ -85,7 +85,7 @@ function JobList({ joblist }) {
             </Box>
             <Box data="job-favorite-button">
               <Button
-                height="0"
+                h={["0.5rem", "1rem", "1rem", "1rem", "2.5rem"]}
                 backgroundColor="clear"
                 onClick={() => {
                   setFavorites(
