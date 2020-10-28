@@ -35,8 +35,7 @@ function JobList({ joblist }) {
     ({ id, date, title, contract, employer, URL, skillLevel }) => (
       <ListItem
         key={id}
-        p={[1, 2, 3, 4]}
-        pl="1rem"
+        p="1rem"
         bg={formatDate(date) === "Sep 24" ? "yellow.100" : "white"}
         borderRight={
           formatDate(date) === "Sep 24"
@@ -66,20 +65,27 @@ function JobList({ joblist }) {
               </Text>
             </Stack>
           </Box>
-          <Box>
-            <Text fontSize={textSize} textAlign="center" isTruncated>
-              {formatDate(date) === "Sep 24" && (
-                <Badge variantColor="red" mb="5px">
-                  New
-                </Badge>
-              )}
-            </Text>
+          <Box data="job-right-side" maxW="80px" textAlign="center">
+            <Box data="job-date">
+              <Text fontSize={textSize} textAlign="center" isTruncated>
+                {formatDate(date) === "Sep 24" && (
+                  <Badge
+                    variantColor="red"
+                    mb="5px"
+                    fontSize={["10px", "12px", "12px", "15px", "15px"]}
+                  >
+                    New
+                  </Badge>
+                )}
+              </Text>
 
-            <Text as="strong" isTruncated>
-              {formatDate(date)}
-            </Text>
-            <Box>
+              <Text as="strong" isTruncated>
+                {formatDate(date)}
+              </Text>
+            </Box>
+            <Box data="job-favorite-button">
               <Button
+                height="0"
                 backgroundColor="clear"
                 onClick={() => {
                   setFavorites(
@@ -92,7 +98,7 @@ function JobList({ joblist }) {
                 <Icon
                   name="star"
                   color={favorites.includes(id) ? "orange.300" : "gray.500"}
-                  size="1.4rem"
+                  size={["0.8rem", "1rem", "1.2rem", "1.4rem", "1.6rem"]}
                 />
               </Button>
             </Box>
