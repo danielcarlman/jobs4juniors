@@ -79,7 +79,7 @@ function JobList({ joblist }) {
                 )}
               </Text>
 
-              <Text as="strong" isTruncated>
+              <Text as="strong" fontSize={textSize} isTruncated>
                 {formatDate(date)}
               </Text>
             </Box>
