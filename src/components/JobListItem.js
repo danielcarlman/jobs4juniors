@@ -53,7 +53,7 @@ function JobList({ joblist }) {
           align="center"
           shouldWrapChildren
         >
-          <Box minW="400px" isTruncated>
+          <Box isTruncated>
             <Stack as="a" href={URL} target="_blank">
               <Text fontSize={textSize} isTruncated>
                 {employer}
@@ -78,24 +78,24 @@ function JobList({ joblist }) {
             <Text as="strong" isTruncated>
               {formatDate(date)}
             </Text>
-          </Box>
-          <Box>
-            <Button
-              backgroundColor="clear"
-              onClick={() => {
-                setFavorites(
-                  favorites.includes(id)
-                    ? removeFavorite(id, favorites)
-                    : addFavorite(id, favorites)
-                );
-              }}
-            >
-              <Icon
-                name="star"
-                color={favorites.includes(id) ? "orange.300" : "gray.500"}
-                size="1.4rem"
-              />
-            </Button>
+            <Box>
+              <Button
+                backgroundColor="clear"
+                onClick={() => {
+                  setFavorites(
+                    favorites.includes(id)
+                      ? removeFavorite(id, favorites)
+                      : addFavorite(id, favorites)
+                  );
+                }}
+              >
+                <Icon
+                  name="star"
+                  color={favorites.includes(id) ? "orange.300" : "gray.500"}
+                  size="1.4rem"
+                />
+              </Button>
+            </Box>
           </Box>
         </Stack>
       </ListItem>
