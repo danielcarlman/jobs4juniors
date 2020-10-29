@@ -33,7 +33,6 @@ function App() {
       <ColorModeProvider>
         <Flex
           height="100%"
-          bg="gray.300"
           direction="column"
           align="center"
           justify="flex-start"
