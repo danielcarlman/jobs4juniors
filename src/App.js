@@ -42,7 +42,6 @@ function App() {
         >
           <Stack spacing={4} shouldWrapChildren>
             <Box
-              color="black"
               fontFamily="'Alfa Slab One', cursive"
               fontSize={["30px", "35px", "50px", "60px"]}
             >
