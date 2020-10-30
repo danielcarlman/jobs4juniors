@@ -24,11 +24,11 @@ function JobList({
 }) {
   const textSize = ["9px", "12px", "15px", "18px", "19px"];
 
-  if (toggleFavorites && favorites.length === 0) {
+  if (toggleFavorites && !favorites.length) {
     return <Text>Favorites list is empty</Text>;
   }
 
-  if (joblist.length === 0) {
+  if (!joblist.length) {
     return <Text>No matches found</Text>;
   }
 
