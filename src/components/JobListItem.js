@@ -14,23 +14,24 @@ function formatDate(date) {
   return moment(date).format("MMM DD");
 }
 
-function addFavorite(id, favorites) {
-  return [...favorites, id];
-}
-
-function removeFavorite(id, favorites) {
-  return favorites.filter((element) => element !== id);
-}
-
-function JobList({ joblist }) {
-  const [favorites, setFavorites] = useState([]);
+function JobList({
+  addFavorite,
+  favorites,
+  joblist,
+  removeFavorite,
+  setFavorites,
+  toggleFavorites,
+}) {
   const textSize = ["9px", "12px", "15px", "18px", "19px"];
-  useEffect(() => {
-    console.log(favorites);
-  }, [favorites]);
+
+  if (toggleFavorites && favorites.length === 0) {
+    return <Text>Favorites list is empty</Text>;
+  }
+
   if (joblist.length === 0) {
     return <Text>No matches found</Text>;
   }
+
   return joblist.map(
     ({ id, date, title, contract, employer, URL, skillLevel }) => (
       <ListItem
@@ -46,23 +47,14 @@ function JobList({ joblist }) {
         spacing="8px"
         shouldWrapChildren
       >
-        <Stack
-          isInline
-          justify="space-between"
-          align="center"
-          shouldWrapChildren
-        >
-          <Box isTruncated>
+        <Stack isInline align="center">
+          <Box w="100%" isTruncated>
             <Stack as="a" href={URL} target="_blank">
-              <Text fontSize={textSize} isTruncated>
-                {employer}
-              </Text>
-              <Text as="strong" fontSize={textSize} isTruncated>
+              <Text fontSize={textSize}>{employer}</Text>
+              <Text as="strong" fontSize={textSize}>
                 {title}
               </Text>
-              <Text fontSize={textSize} isTruncated>
-                {contract}
-              </Text>
+              <Text fontSize={textSize}>{contract}</Text>
             </Stack>
           </Box>
           <Box data="job-right-side" maxW="80px" textAlign="center">

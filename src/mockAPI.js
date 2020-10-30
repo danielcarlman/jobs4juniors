@@ -1,7 +1,7 @@
 const mockAPI = {
   jobs: [
     {
-      id: 1,
+      id: "1",
       employer: "Shrine Development",
       title: "Senior Software Engineer",
       contract: "Contract/North America Only",
@@ -11,7 +11,7 @@ const mockAPI = {
         "https://weworkremotely.com/remote-jobs/shrine-development-senior-software-engineer",
     },
     {
-      id: 2,
+      id: "2",
       employer: "Elevar",
       title: "React Engineer",
       contract: "Full-Time Anywhere (100% Remote) Only",
@@ -20,7 +20,7 @@ const mockAPI = {
       URL: "https://weworkremotely.com/remote-jobs/elevar-react-engineer",
     },
     {
-      id: 3,
+      id: "3",
       employer: "Twitch",
       title: "Senior Backend Engineer",
       contract: "Full-Time / Europe Only",
@@ -30,7 +30,7 @@ const mockAPI = {
         "https://weworkremotely.com/remote-jobs/twitch-senior-backend-engineer",
     },
     {
-      id: 4,
+      id: "4",
       employer: "Shogun",
       title: "Typescript + React Software Engineer",
       contract: "Full-Time / North America Only",
@@ -40,7 +40,7 @@ const mockAPI = {
         "https://weworkremotely.com/remote-jobs/shogun-typescript-react-software-engineer",
     },
     {
-      id: 5,
+      id: "5",
       employer: "Bryter",
       title: "Frontend Engineer, Design Systems",
       contract: "Full-Time Anywhere (100% Remote) Only",
@@ -50,7 +50,7 @@ const mockAPI = {
         "https://weworkremotely.com/remote-jobs/bryter-frontend-engineer-design-systems",
     },
     {
-      id: 6,
+      id: "6",
       employer: "Podsights",
       title: "Software Engineer",
       contract: "Full-Time / USA Only",

@@ -4,10 +4,12 @@ import {
   Button,
   ColorModeProvider,
   Flex,
+  FormLabel,
   Input,
   List,
   Spinner,
   Stack,
+  Switch,
   Text,
   ThemeProvider,
 } from "@chakra-ui/core";
@@ -15,10 +17,20 @@ import JobListItem from "./components/JobListItem";
 import api from "./api";
 import "./global.css";
 
+function addFavorite(id, favorites) {
+  return [...favorites, id];
+}
+
+function removeFavorite(id, favorites) {
+  return favorites.filter((element) => element !== id);
+}
+
 function App() {
   const [search, setSearch] = useState("");
   const [joblist, setJoblist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+  const [toggleFavorites, setToggleFavorites] = useState(false);
   const originalList = useRef();
   useEffect(() => {
     setIsLoading(true);
@@ -90,6 +102,15 @@ function App() {
               </Stack>
             </form>
 
+            <Flex align="center">
+              <FormLabel htmlFor="toggle-favorite">Show Favorites</FormLabel>
+              <Switch
+                id="toggle-favorite"
+                onChange={() => setToggleFavorites(!toggleFavorites)}
+              />
+            </Flex>
+            {/* <span>{toggleFavorites.toString()}</span>
+            <span>{favorites.toString()}</span> */}
             <List
               w="90vw"
               maxW="950px"
@@ -108,7 +129,20 @@ function App() {
                   />
                 </Flex>
               )}
-              {!isLoading && <JobListItem joblist={joblist} />}
+              {!isLoading && (
+                <JobListItem
+                  joblist={
+                    toggleFavorites
+                      ? joblist.filter((job) => favorites.includes(job.id))
+                      : joblist
+                  }
+                  favorites={favorites}
+                  addFavorite={addFavorite}
+                  removeFavorite={removeFavorite}
+                  setFavorites={setFavorites}
+                  toggleFavorites={toggleFavorites}
+                />
+              )}
             </List>
           </Stack>
         </Flex>
