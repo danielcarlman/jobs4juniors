@@ -29,9 +29,13 @@ function App() {
   const [search, setSearch] = useState("");
   const [joblist, setJoblist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const localData = localStorage.getItem("favorites-list");
+    return localData ? JSON.parse(localData) : [];
+  });
   const [toggleFavorites, setToggleFavorites] = useState(false);
   const originalList = useRef();
+
   useEffect(() => {
     setIsLoading(true);
     api.getJobs().then((data) => {
@@ -40,6 +44,11 @@ function App() {
       setIsLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites-list", JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
     <ThemeProvider>
       <ColorModeProvider>
