@@ -35,6 +35,7 @@ function App() {
     return localData ? JSON.parse(localData) : [];
   });
   const [toggleFavorites, setToggleFavorites] = useState(false);
+  const [sortByDate, setSortByDate] = useState("mostrecent");
   const originalList = useRef();
 
   useEffect(() => {
@@ -49,6 +50,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem("favorites-list", JSON.stringify(favorites));
   }, [favorites]);
+
+  useEffect(() => {
+    console.log(sortByDate);
+  }, [sortByDate]);
 
   return (
     <ThemeProvider>
@@ -130,9 +135,28 @@ function App() {
                   variant="outline"
                   backgroundColor="gray.200"
                   borderColor="gray.300"
+                  onChange={() => {
+                    setSortByDate(
+                      sortByDate === "mostrecent" ? "leastrecent" : "mostrecent"
+                    );
+
+                    setJoblist(
+                      sortByDate === "mostrecent"
+                        ? joblist.sort(
+                            (a, b) =>
+                              new Date(a.date).valueOf() -
+                              new Date(b.date).valueOf()
+                          )
+                        : joblist.sort(
+                            (a, b) =>
+                              new Date(b.date).valueOf() -
+                              new Date(a.date).valueOf()
+                          )
+                    );
+                  }}
                 >
-                  <option value="option1">Most Recent</option>
-                  <option value="option2">Least Recent</option>
+                  <option value="mostrecent">Most Recent</option>
+                  <option value="leastrecent">Least Recent</option>
                 </Select>
               </Box>
             </Flex>
