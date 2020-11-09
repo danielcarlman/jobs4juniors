@@ -21,9 +21,8 @@ function JobList({
   removeFavorite,
   setFavorites,
   toggleFavorites,
+  textSize,
 }) {
-  const textSize = ["9px", "12px", "15px", "18px", "19px"];
-
   if (toggleFavorites && !favorites.length) {
     return <Text>Favorites list is empty</Text>;
   }

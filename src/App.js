@@ -7,10 +7,10 @@ import {
   FormLabel,
   Input,
   List,
+  Select,
   Spinner,
   Stack,
   Switch,
-  Text,
   ThemeProvider,
 } from "@chakra-ui/core";
 import JobListItem from "./components/JobListItem";
@@ -26,6 +26,7 @@ function removeFavorite(id, favorites) {
 }
 
 function App() {
+  const textSize = ["9px", "12px", "15px", "18px", "19px"];
   const [search, setSearch] = useState("");
   const [joblist, setJoblist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,15 +112,31 @@ function App() {
               </Stack>
             </form>
 
-            <Flex align="center">
-              <FormLabel htmlFor="toggle-favorite">Show Favorites</FormLabel>
-              <Switch
-                id="toggle-favorite"
-                onChange={() => setToggleFavorites(!toggleFavorites)}
-              />
+            <Flex
+              direction={["column", "row"]}
+              justify="space-between"
+              align="center"
+            >
+              <Box my="5px">
+                <FormLabel htmlFor="toggle-favorite">Show Favorites</FormLabel>
+                <Switch
+                  id="toggle-favorite"
+                  onChange={() => setToggleFavorites(!toggleFavorites)}
+                />
+              </Box>
+              <Box my="5px" spacing="8px" width={["100%", "250px", "300px"]}>
+                <Select
+                  fontSize={textSize}
+                  variant="outline"
+                  backgroundColor="gray.200"
+                  borderColor="gray.300"
+                >
+                  <option value="option1">Most Recent</option>
+                  <option value="option2">Least Recent</option>
+                </Select>
+              </Box>
             </Flex>
-            {/* <span>{toggleFavorites.toString()}</span>
-            <span>{favorites.toString()}</span> */}
+
             <List
               w="90vw"
               maxW="950px"
@@ -150,6 +167,7 @@ function App() {
                   removeFavorite={removeFavorite}
                   setFavorites={setFavorites}
                   toggleFavorites={toggleFavorites}
+                  textSize={textSize}
                 />
               )}
             </List>
