@@ -53,6 +53,7 @@ function App() {
 
   useEffect(() => {
     console.log(sortByDate);
+    // run logic
   }, [sortByDate]);
 
   return (
@@ -144,13 +145,13 @@ function App() {
                       sortByDate === "mostrecent"
                         ? joblist.sort(
                             (a, b) =>
-                              new Date(a.date).valueOf() -
-                              new Date(b.date).valueOf()
+                              new Date(a.date).getTime() -
+                              new Date(b.date).getTime()
                           )
                         : joblist.sort(
                             (a, b) =>
-                              new Date(b.date).valueOf() -
-                              new Date(a.date).valueOf()
+                              new Date(b.date).getTime() -
+                              new Date(a.date).getTime()
                           )
                     );
                   }}
