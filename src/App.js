@@ -35,8 +35,23 @@ function App() {
     return localData ? JSON.parse(localData) : [];
   });
   const [toggleFavorites, setToggleFavorites] = useState(false);
-  const [sortByDate, setSortByDate] = useState("mostrecent");
+  const [sortData, setSortData] = useState("mostrecent");
   const originalList = useRef();
+
+  const sortBy = {
+    mostrecent: () =>
+      setJoblist(
+        joblist.sort(
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        )
+      ),
+    leastrecent: () =>
+      setJoblist(
+        joblist.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        )
+      ),
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -51,10 +66,9 @@ function App() {
     localStorage.setItem("favorites-list", JSON.stringify(favorites));
   }, [favorites]);
 
-  useEffect(() => {
-    console.log(sortByDate);
-    // run logic
-  }, [sortByDate]);
+  // useEffect(() => {
+  //   console.log(sortData);
+  // }, [sortData]);
 
   return (
     <ThemeProvider>
@@ -136,28 +150,14 @@ function App() {
                   variant="outline"
                   backgroundColor="gray.200"
                   borderColor="gray.300"
-                  onChange={() => {
-                    setSortByDate(
-                      sortByDate === "mostrecent" ? "leastrecent" : "mostrecent"
-                    );
-
-                    setJoblist(
-                      sortByDate === "mostrecent"
-                        ? joblist.sort(
-                            (a, b) =>
-                              new Date(a.date).getTime() -
-                              new Date(b.date).getTime()
-                          )
-                        : joblist.sort(
-                            (a, b) =>
-                              new Date(b.date).getTime() -
-                              new Date(a.date).getTime()
-                          )
-                    );
+                  onChange={(e) => {
+                    setSortData(e.target.value);
+                    sortBy[sortData]();
                   }}
                 >
                   <option value="mostrecent">Most Recent</option>
                   <option value="leastrecent">Least Recent</option>
+                  {/* <option value="alphabetically">A-Z</option> */}
                 </Select>
               </Box>
             </Flex>
