@@ -58,13 +58,8 @@ function JobList({
           </Box>
           <Box data="job-right-side" maxW="80px" textAlign="center">
             <Box data="job-date">
-              <Text
-                as="span"
-                fontSize={textSize}
-                textAlign="center"
-                isTruncated
-              >
-                {formatDate(date) === "Sep 24" && (
+              {formatDate(date) === "Sep 24" && (
+                <Box fontSize={textSize} textAlign="center" isTruncated>
                   <Badge
                     variantColor="red"
                     mb="5px"
@@ -72,9 +67,8 @@ function JobList({
                   >
                     New
                   </Badge>
-                )}
-              </Text>
-
+                </Box>
+              )}
               <Text as="strong" fontSize={textSize} isTruncated>
                 {formatDate(date)}
               </Text>
