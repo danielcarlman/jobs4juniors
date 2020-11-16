@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Badge,
   Box,
@@ -58,7 +58,12 @@ function JobList({
           </Box>
           <Box data="job-right-side" maxW="80px" textAlign="center">
             <Box data="job-date">
-              <Text fontSize={textSize} textAlign="center" isTruncated>
+              <Text
+                as="span"
+                fontSize={textSize}
+                textAlign="center"
+                isTruncated
+              >
                 {formatDate(date) === "Sep 24" && (
                   <Badge
                     variantColor="red"
