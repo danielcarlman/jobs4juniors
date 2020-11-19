@@ -40,14 +40,14 @@ function App() {
 
   const sortBy = {
     mostrecent: () =>
-      setJoblist(
-        joblist.sort(
+      setJoblist((list) =>
+        list.sort(
           (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
         )
       ),
     leastrecent: () =>
-      setJoblist(
-        joblist.sort(
+      setJoblist((list) =>
+        list.sort(
           (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
         )
       ),
@@ -57,6 +57,7 @@ function App() {
     setIsLoading(true);
     api.getJobs().then((data) => {
       setJoblist(data);
+      sortBy[sortData]();
       originalList.current = data;
       setIsLoading(false);
     });
@@ -67,8 +68,11 @@ function App() {
   }, [favorites]);
 
   // useEffect(() => {
-  //   console.log(sortData);
-  // }, [sortData]);
+  //   if (sortData && joblist) {
+  //     console.log({ sortData });
+  //     sortBy[sortData]();
+  //   }
+  // }, [sortData, joblist, sortBy]);
 
   return (
     <ThemeProvider>
@@ -124,6 +128,7 @@ function App() {
                   fontSize={["sm", "md", "lg", "xl"]}
                   onChange={(e) => {
                     setSearch(e.target.value);
+                    sortBy[sortData]();
                   }}
                 />
                 <Button p={[2, 4, 6, 8]} rounded="lg" type="submit">
@@ -150,6 +155,7 @@ function App() {
                   variant="outline"
                   backgroundColor="gray.200"
                   borderColor="gray.300"
+                  value={sortData}
                   onChange={(e) => {
                     setSortData(e.target.value);
                     sortBy[sortData]();
