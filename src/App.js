@@ -25,6 +25,24 @@ function removeFavorite(id, favorites) {
   return favorites.filter((element) => element !== id);
 }
 
+function getComparableDate(dateString) {
+  return new Date(dateString).getTime();
+}
+
+function withSortedByDate(sortOrder, list) {
+  switch (sortOrder) {
+    case "mostrecent":
+      return [...list].sort((a, b) =>
+        getComparableDate(a.date) < getComparableDate(b.date) ? 1 : -1
+      );
+    case "leastrecent":
+      return [...list].sort((a, b) =>
+        getComparableDate(b.date) < getComparableDate(a.date) ? 1 : -1
+      );
+    default:
+  }
+}
+
 function App() {
   const textSize = ["9px", "12px", "15px", "18px", "19px"];
   const [search, setSearch] = useState("");
@@ -35,30 +53,14 @@ function App() {
     return localData ? JSON.parse(localData) : [];
   });
   const [toggleFavorites, setToggleFavorites] = useState(false);
-  const [sortData, setSortData] = useState("mostrecent");
   const originalList = useRef();
-
-  const sortBy = {
-    mostrecent: () =>
-      setJoblist((list) =>
-        list.sort(
-          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-        )
-      ),
-    leastrecent: () =>
-      setJoblist((list) =>
-        list.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        )
-      ),
-  };
 
   useEffect(() => {
     setIsLoading(true);
     api.getJobs().then((data) => {
-      setJoblist(data);
-      sortBy[sortData]();
-      originalList.current = data;
+      const sorted = withSortedByDate("mostrecent", data);
+      setJoblist(sorted);
+      originalList.current = sorted;
       setIsLoading(false);
     });
   }, []);
@@ -66,13 +68,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("favorites-list", JSON.stringify(favorites));
   }, [favorites]);
-
-  // useEffect(() => {
-  //   if (sortData && joblist) {
-  //     console.log({ sortData });
-  //     sortBy[sortData]();
-  //   }
-  // }, [sortData, joblist, sortBy]);
 
   return (
     <ThemeProvider>
@@ -128,7 +123,6 @@ function App() {
                   fontSize={["sm", "md", "lg", "xl"]}
                   onChange={(e) => {
                     setSearch(e.target.value);
-                    sortBy[sortData]();
                   }}
                 />
                 <Button p={[2, 4, 6, 8]} rounded="lg" type="submit">
@@ -155,10 +149,8 @@ function App() {
                   variant="outline"
                   backgroundColor="gray.200"
                   borderColor="gray.300"
-                  value={sortData}
                   onChange={(e) => {
-                    setSortData(e.target.value);
-                    sortBy[sortData]();
+                    setJoblist(withSortedByDate(e.target.value, joblist));
                   }}
                 >
                   <option value="mostrecent">Most Recent</option>
