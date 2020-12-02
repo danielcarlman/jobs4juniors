@@ -73,6 +73,4 @@ mockAPI.jobs = repeatArray(mockAPI.jobs, 10).map((item) => ({
   id: generateId(),
 }));
 
-console.log(mockAPI, "mockAPI");
-
 export default mockAPI;
