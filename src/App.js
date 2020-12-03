@@ -51,7 +51,6 @@ function App({ location }) {
   const textSize = ["9px", "12px", "15px", "18px", "19px"];
   const [joblist, setJoblist] = useState([]);
   const originalList = useRef();
-  const [queryURL, setQueryURL] = useState("");
   const [searchURL, setSearchURL] = useState(
     new URLSearchParams(location.search).get("q")
   );
@@ -64,13 +63,15 @@ function App({ location }) {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log(searchURL, "searchURL value");
-    api.getJobs().then((data) => {
-      const sorted = withSortedByDate("mostrecent", data);
-      setJoblist(sorted);
-      originalList.current = sorted;
-      setIsLoading(false);
-    });
+    api
+      .getJobs()
+      .then((data) => {
+        const sorted = withSortedByDate("mostrecent", data);
+        setJoblist(sorted);
+        originalList.current = sorted;
+        setIsLoading(false);
+      })
+      .then(() => refreshJobList());
   }, []);
 
   useEffect(() => {
@@ -78,10 +79,8 @@ function App({ location }) {
   }, [favorites]);
 
   useEffect(() => {
-    if (queryURL) {
-      history.push("/search?q=" + queryURL);
-    }
-  }, [queryURL]);
+    history.push("/?q=" + searchURL);
+  }, [searchURL]);
 
   function refreshJobList() {
     setJoblist(
@@ -123,7 +122,7 @@ function App({ location }) {
               }}
               onSubmit={(event) => {
                 event.preventDefault();
-                setQueryURL(searchURL);
+                setSearchURL(searchURL);
                 refreshJobList();
               }}
             >
@@ -140,6 +139,7 @@ function App({ location }) {
                   rounded="lg"
                   textAlign="center"
                   fontSize={["sm", "md", "lg", "xl"]}
+                  value={searchURL}
                   onChange={(e) => {
                     setSearchURL(e.target.value);
                   }}

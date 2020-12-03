@@ -2,7 +2,7 @@ import { repeatArray } from "./utils";
 
 describe("repeatArray", () => {
   test("works with empty array", () => {
-    expect(repeatArray([])).toEqual([]);
+    expect(repeatArray([])).toEqual(undefined);
   });
 
   test("works with a random array", () => {
