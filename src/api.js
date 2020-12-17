@@ -1,17 +1,9 @@
-import mockAPI from "./mockAPI";
-
 const api = {
   getJobs() {
-    return getMockData(mockAPI.jobs);
+    return fetch(
+      "https://weworkremotelyapi.herokuapp.com/api/jobs?perPage=15"
+    ).then((res) => res.json());
   },
 };
-
-function getMockData(data) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(data);
-    }, 1000);
-  });
-}
 
 export default api;

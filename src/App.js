@@ -16,7 +16,6 @@ import {
 import JobListItem from "./components/JobListItem";
 import api from "./api";
 import "./global.css";
-import history from "./components/history";
 
 function addFavorite(id, favorites) {
   return [...favorites, id];
@@ -41,59 +40,37 @@ function withSortedByDate(sortOrder, list) {
         getComparableDate(b.date) < getComparableDate(a.date) ? 1 : -1
       );
     case "alphabetically":
-      return [...list].sort((a, b) => (b.employer < a.employer ? 1 : -1));
+      return [...list].sort((a, b) => (b.company < a.company ? 1 : -1));
     default:
       break;
   }
 }
 
-function App({ location }) {
+function App() {
   const textSize = ["9px", "12px", "15px", "18px", "19px"];
+  const [search, setSearch] = useState("");
   const [joblist, setJoblist] = useState([]);
-  const originalList = useRef();
-  const [searchURL, setSearchURL] = useState(
-    new URLSearchParams(location.search).get("q")
-  );
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState(() => {
     const localData = localStorage.getItem("favorites-list");
     return localData ? JSON.parse(localData) : [];
   });
   const [toggleFavorites, setToggleFavorites] = useState(false);
+  const originalList = useRef();
 
   useEffect(() => {
     setIsLoading(true);
-    api
-      .getJobs()
-      .then((data) => {
-        const sorted = withSortedByDate("mostrecent", data);
-        setJoblist(sorted);
-        originalList.current = sorted;
-        setIsLoading(false);
-      })
-      .then(() => refreshJobList());
+    api.getJobs().then((data) => {
+      const sorted = withSortedByDate("mostrecent", data.jobs);
+      setJoblist(sorted);
+      originalList.current = sorted;
+      setIsLoading(false);
+    });
   }, []);
 
   useEffect(() => {
     localStorage.setItem("favorites-list", JSON.stringify(favorites));
   }, [favorites]);
-
-  useEffect(() => {
-    history.push("/?q=" + searchURL);
-  }, [searchURL]);
-
-  function refreshJobList() {
-    setJoblist(
-      searchURL
-        ? originalList.current.filter((job) =>
-            job.title
-              .trim()
-              .toLowerCase()
-              .includes(searchURL.trim().toLowerCase())
-          )
-        : originalList.current
-    );
-  }
 
   return (
     <ThemeProvider>
@@ -122,8 +99,16 @@ function App({ location }) {
               }}
               onSubmit={(event) => {
                 event.preventDefault();
-                setSearchURL(searchURL);
-                refreshJobList();
+                setJoblist(
+                  search
+                    ? originalList.current.filter((job) =>
+                        job.title
+                          .trim()
+                          .toLowerCase()
+                          .includes(search.trim().toLowerCase())
+                      )
+                    : originalList.current
+                );
               }}
             >
               <Stack
@@ -139,9 +124,8 @@ function App({ location }) {
                   rounded="lg"
                   textAlign="center"
                   fontSize={["sm", "md", "lg", "xl"]}
-                  value={searchURL}
                   onChange={(e) => {
-                    setSearchURL(e.target.value);
+                    setSearch(e.target.value);
                   }}
                 />
                 <Button p={[2, 4, 6, 8]} rounded="lg" type="submit">

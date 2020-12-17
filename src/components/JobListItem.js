@@ -31,8 +31,10 @@ function JobList({
     return <Text>No matches found</Text>;
   }
 
+  console.log({ joblist });
+
   return joblist.map(
-    ({ id, date, title, contract, employer, URL, skillLevel }) => (
+    ({ id, date, title, type, company, link, skillLevel, isNew }) => (
       <ListItem
         key={id}
         p="1rem"
@@ -42,23 +44,23 @@ function JobList({
             ? "0.4rem solid #ffd500"
             : "0.4rem solid white"
         }
-        display={skillLevel < 3 ? "block" : "none"}
+        // display={skillLevel < 3 ? "block" : "none"}
         spacing="8px"
         shouldWrapChildren
       >
         <Stack isInline align="center">
           <Box w="100%" isTruncated>
-            <Stack as="a" href={URL} target="_blank">
-              <Text fontSize={textSize}>{employer}</Text>
+            <Stack as="a" href={link} target="_blank">
+              <Text fontSize={textSize}>{company}</Text>
               <Text as="strong" fontSize={textSize}>
                 {title}
               </Text>
-              <Text fontSize={textSize}>{contract}</Text>
+              <Text fontSize={textSize}>{type}</Text>
             </Stack>
           </Box>
           <Box data="job-right-side" maxW="80px" textAlign="center">
             <Box data="job-date">
-              {formatDate(date) === "Sep 24" && (
+              {isNew && (
                 <Box fontSize={textSize} textAlign="center" isTruncated>
                   <Badge
                     variantColor="red"
