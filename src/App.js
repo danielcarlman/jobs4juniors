@@ -47,7 +47,7 @@ function withSortedByDate(sortOrder, list) {
 }
 
 function App() {
-  const textSize = ["9px", "12px", "15px", "18px", "19px"];
+  const textSize = ["10px", "12px", "15px", "18px", "19px"];
   const [search, setSearch] = useState("");
   const [joblist, setJoblist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
