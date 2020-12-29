@@ -50,12 +50,18 @@ function withSortedByDate(sortOrder, list) {
   }
 }
 
+function filterJobListBySearch(search, originalList) {
+  return search
+    ? originalList.current.filter((job) =>
+        job.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+      )
+    : originalList.current;
+}
+
 function App() {
   const textSize = ["10px", "12px", "15px", "18px", "19px"];
   const [joblist, setJoblist] = useState([]);
-  const [search, setSearch] = useState(
-    new URLSearchParams(window.location.search).get("q")
-  );
+  const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState(() => {
     const localData = localStorage.getItem("favorites-list");
@@ -71,23 +77,18 @@ function App() {
       setJoblist(sorted);
       originalList.current = sorted;
       setIsLoading(false);
-      filterJobListBySearch();
+      setJoblist(
+        filterJobListBySearch(
+          new URLSearchParams(window.location.search).get("q"),
+          originalList
+        )
+      );
     });
   }, []);
 
   useEffect(() => {
     localStorage.setItem("favorites-list", JSON.stringify(favorites));
   }, [favorites]);
-
-  function filterJobListBySearch() {
-    setJoblist(
-      search
-        ? originalList.current.filter((job) =>
-            job.title.trim().toLowerCase().includes(search.trim().toLowerCase())
-          )
-        : originalList.current
-    );
-  }
 
   return (
     <ThemeProvider>
@@ -120,7 +121,7 @@ function App() {
                 if (search != null) {
                   history.push("/?q=" + search);
                 }
-                filterJobListBySearch();
+                setJoblist(filterJobListBySearch(search, originalList));
               }}
             >
               <Stack
