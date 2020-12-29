@@ -1,3 +1,4 @@
+// eslint-disable react-hooks/exhaustive-deps
 import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
@@ -70,7 +71,6 @@ function App() {
       setJoblist(sorted);
       originalList.current = sorted;
       setIsLoading(false);
-      // eslint-disable react-hooks/exhaustive-deps
       filterJobListBySearch();
     });
   }, []);
