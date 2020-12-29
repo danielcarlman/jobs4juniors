@@ -16,6 +16,9 @@ import {
 import JobListItem from "./components/JobListItem";
 import api from "./api";
 import "./global.css";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 function addFavorite(id, favorites) {
   return [...favorites, id];
@@ -48,8 +51,10 @@ function withSortedByDate(sortOrder, list) {
 
 function App() {
   const textSize = ["10px", "12px", "15px", "18px", "19px"];
-  const [search, setSearch] = useState("");
   const [joblist, setJoblist] = useState([]);
+  const [search, setSearch] = useState(
+    new URLSearchParams(window.location.search).get("q")
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState(() => {
     const localData = localStorage.getItem("favorites-list");
@@ -65,12 +70,23 @@ function App() {
       setJoblist(sorted);
       originalList.current = sorted;
       setIsLoading(false);
+      filterJobListBySearch();
     });
   }, []);
 
   useEffect(() => {
     localStorage.setItem("favorites-list", JSON.stringify(favorites));
   }, [favorites]);
+
+  function filterJobListBySearch() {
+    setJoblist(
+      search
+        ? originalList.current.filter((job) =>
+            job.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+          )
+        : originalList.current
+    );
+  }
 
   return (
     <ThemeProvider>
@@ -99,16 +115,11 @@ function App() {
               }}
               onSubmit={(event) => {
                 event.preventDefault();
-                setJoblist(
-                  search
-                    ? originalList.current.filter((job) =>
-                        job.title
-                          .trim()
-                          .toLowerCase()
-                          .includes(search.trim().toLowerCase())
-                      )
-                    : originalList.current
-                );
+                setSearch(search);
+                if (search != null) {
+                  history.push("/?q=" + search);
+                }
+                filterJobListBySearch();
               }}
             >
               <Stack
@@ -124,6 +135,7 @@ function App() {
                   rounded="lg"
                   textAlign="center"
                   fontSize={["sm", "md", "lg", "xl"]}
+                  value={search}
                   onChange={(e) => {
                     setSearch(e.target.value);
                   }}
