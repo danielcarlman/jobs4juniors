@@ -141,7 +141,7 @@ function App() {
                     setSearch(e.target.value);
                   }}
                 />
-                <Button px={[2, 4, 6, 8]} rounded="lg" type="submit">
+                <Button py={[2, 4, 6, 8]} rounded="lg" type="submit">
                   Search
                 </Button>
               </Stack>
