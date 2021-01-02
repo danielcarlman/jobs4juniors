@@ -199,7 +199,7 @@ function App() {
                   joblist={
                     toggleFavorites
                       ? joblist.filter((job) => favorites.includes(job.id))
-                      : joblist
+                      : joblist.filter((job) => job.level == null)
                   }
                   favorites={favorites}
                   addFavorite={addFavorite}
